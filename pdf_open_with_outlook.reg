@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\OpenWithOutlook]
+@="Open with Outlook"
+
+[HKEY_CLASSES_ROOT\*\shell\OpenWithOutlook\command]
+@="\"C:\\Users\\clamaral\\Anaconda3\\python.exe\" \"C:\\Users\\clamaral\\Documents\\GitHub\\Outlook-Script\\outlookscript.py\" \"%1\""

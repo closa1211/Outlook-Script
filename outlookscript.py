@@ -1,22 +1,23 @@
 import os
 import subprocess
 import sys
+import win32com.client
 
 def open_outlook_with_file_path(file_path):
-    # Format the file path for the email body
-    email_body = f"File located here: {file_path}"
+    # Open Outlook and create a new email
+    outlook = win32com.client.Dispatch("Outlook.Application")
+    mail_item = outlook.CreateItem(0)
+    mail_item.Subject = "[FOR REVIEW]"
+    mail_item.HTMLBody = f"File located here:<br/><br/>{file_path}"
 
-    # Open Outlook with the email body
-    subprocess.run(['start', 'outlook', '/c', 'ipm.note', '/m', email_body], shell=True)
+    # Display the email
+    mail_item.Display()
 
 def main():
     # Check if a file path is provided as an argument
     if len(sys.argv) > 1:
         file_path = sys.argv[1]
-        if os.path.isfile(file_path):
-            open_outlook_with_file_path(file_path)
-        else:
-            print("Invalid file path!")
+        open_outlook_with_file_path(file_path)
     else:
         print("No file path provided!")
 
