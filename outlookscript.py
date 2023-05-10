@@ -8,7 +8,10 @@ def open_outlook_with_file_path(file_path):
     outlook = win32com.client.Dispatch("Outlook.Application")
     mail_item = outlook.CreateItem(0)
     mail_item.Subject = "[FOR REVIEW]"
-    mail_item.HTMLBody = f"File located here:<br/><br/>{file_path}"
+
+    #Format the file as a hyperlink and paste it in the email
+    file_link = f"<a href='file://{file_path}'>{file_path}</a>"
+    mail_item.HTMLBody = f"File located here:<br/><br/>{file_link}"
 
     # Display the email
     mail_item.Display()
